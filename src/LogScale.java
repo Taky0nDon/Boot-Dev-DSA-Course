@@ -1,14 +1,13 @@
 import java.util.Arrays;
-import java.math.BigDecimal;
-import java.math.MathContext;
+import java.text.DecimalFormat;
 
 public class LogScale{
     public static void main(String[] args){
-        //BigDecimal[] data = new BigDecimal[args.length - 1];
-        double[] data = new double[args.length - 1];
+        DecimalFormat df = new DecimalFormat("###.###");
+        String[] data = new String[args.length - 1];
         double base = Double.parseDouble(args[args.length - 1]);
         for (int i = 0; i < data.length; i++){
-            data[i] = Math.rint(logArbitraryBase(Double.parseDouble(args[i]), base));
+            data[i] = df.format(Math.rint(logArbitraryBase(Double.parseDouble(args[i]), base)));
         }
         IO.println(Arrays.toString(data));
     }
