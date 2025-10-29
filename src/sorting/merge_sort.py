@@ -1,4 +1,5 @@
 # Merge sort is stable--it will preserve the order of duplicate items in the original list
+from random import randint
 def merge_sort(nums: list[int]) -> list[int]:
     if len(nums) < 2:
         return nums
@@ -32,8 +33,22 @@ def merge(list1: list[int], list2: list[int]) -> list[int]:
 
     return res
 
+class foo:
+    def __init__(self, id, val):
+        self.id = id
+        self.val = val
+    def __str__(self):
+        return f"id: {self.id}, val: {self.val}"
+    def __repr__(self):
+        return self.__str__()
+    def __le__(self, other):
+        return self.val <= other.val
+    def __lt__(self, other):
+        return self.val < other.val
+
 if __name__ == "__main__":
     tests = [
+            [foo(id, randint(1,2)) for id in range(100)],
             [3, 2, 1],
             [5, 4, 3, 2, 1],
             [1, 8, 4, 3, 9, 10, 0],
@@ -42,3 +57,4 @@ if __name__ == "__main__":
             ]
     for t in tests:
         print(merge_sort(t))
+    print(sorted(tests[0]))
