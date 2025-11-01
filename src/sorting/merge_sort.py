@@ -1,4 +1,5 @@
 # Merge sort is stable--it will preserve the order of duplicate items in the original list
+from sys import argv
 from random import randint
 def merge_sort(nums: list[int]) -> list[int]:
     if len(nums) < 2:
@@ -47,14 +48,5 @@ class foo:
         return self.val < other.val
 
 if __name__ == "__main__":
-    tests = [
-            [foo(id, randint(1,2)) for id in range(100)],
-            [3, 2, 1],
-            [5, 4, 3, 2, 1],
-            [1, 8, 4, 3, 9, 10, 0],
-            [14,11,12],
-            [1,0]
-            ]
-    for t in tests:
-        print(merge_sort(t))
-    print(sorted(tests[0]))
+    unsorted_list = list(int(e) for e in argv[1:])
+    print(merge_sort(unsorted_list))
