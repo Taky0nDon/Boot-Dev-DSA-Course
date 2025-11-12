@@ -5,7 +5,7 @@ from random import randint
 # Lookback algo. i=j=1.
 # compare e[j] and e[j-1]. move on if in order. if not in order
 # swap. repeat with j until in order or you reach j = 1 again.
-#
+# Can sort a list as it receives it.
 def insertion_sort(data: list[int]) -> list[int]:
     for i in range(len(data)):
         j = i
