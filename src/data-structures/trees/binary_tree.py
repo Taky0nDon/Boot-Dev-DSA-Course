@@ -76,6 +76,48 @@ class BinarySearchTreeNode:
             return
         self.right.insert(val)
 
+    def postorder(self,
+                 visited: Optional[list[BinarySearchTreeNode]]=None) -> [list[BinarySearchTreeNode]]:
+        if visited is None:
+            visited = []
+        if self.left:
+            self.left.postorder(visited)
+        if self.right:
+            self.right.postorder(visited)
+        visited.append(self.val)
+        return visited
+
+    def preorder(self,
+                 visited: Optional[list[BinarySearchTreeNode]]=None) -> [list[BinarySearchTreeNode]]:
+        if visited is None:
+            visited = []
+        visited.append(self.val)
+        if self.left is not None:
+            self.left.preorder(visited)
+        if self.right is not None:
+            self.right.preorder(visited)
+        return visited
+
+    def inorder(self,
+                 visited: Optional[list[BinarySearchTreeNode]]=None) -> [list[BinarySearchTreeNode]]:
+        if visited is None:
+            visited = []
+        if self.left is not None:
+            visited = self.left.inorder(visited)
+        visited.append(self.val)
+        if self.right is not None:
+            visited = self.right.inorder(visited)
+        return visited
+
+    def exists(self, val) -> bool:
+        if self.val == val:
+            return True
+        if self.val > val and self.left:
+                return self.left.exists(val)
+        if self.val < val and self.right:
+            return self.right.exists(val)
+        return False
+
     def __repr__(self):
         return (
             "TreeNode {"
@@ -86,17 +128,19 @@ class BinarySearchTreeNode:
 
 if __name__ == "__main__":
     tree = BinarySearchTreeNode()
-    tree.insert(1)
+    tree.insert(4)
     print(tree)
     tree.insert(2)
-    tree.insert(3)
-    tree.insert(0)
-    tree.insert(-1)
-    tree.insert(2.5)
-    tree.insert(inf)
+    tree.insert(7)
+    tree.insert(1)
+    tree.insert(6)
     print(tree)
-    tree.delete(0)
     print(".")
     print(tree)
-    print(tree.get_min())
-    print(tree.get_max())
+    print(".")
+    print(tree.preorder())
+    print(tree.postorder())
+    print(tree.inorder())
+    print(tree.exists(7))
+    print(tree.exists(11))
+    print(tree.exists(6))
