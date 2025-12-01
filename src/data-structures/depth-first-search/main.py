@@ -7,7 +7,6 @@ class Graph:
     def depth_first_search_r(self, visited, current_vertex):
         visited.append(current_vertex)
         current_neighbors = sorted(self.graph[current_vertex])
-        print(current_vertex, current_neighbors)
         for vertex in current_neighbors:
             if vertex not in visited:
                 self.depth_first_search_r(visited, vertex)
